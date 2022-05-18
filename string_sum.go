@@ -22,7 +22,7 @@ var (
 //
 // Use the errors defined above as described, again wrapping into fmt.Errorf
 
-func StringSum(input string) (output string,  errerror) {
+func StringSum(input string) (output string, err error) {
 	input = strings.TrimSpace(input)
 	if len(input) == 0 {
 		return "", fmt.Errorf("e1: %w", errorEmptyInput)
@@ -45,26 +45,26 @@ func StringSum(input string) (output string,  errerror) {
 	var x, y int
 	var started, signMinus, definedX bool
 
-	for _, v := range input {
+	for , v := range input {
 		val := string(v)
 		if !definedX {
 			_, err := strconv.Atoi(val)
 			if err != nil {
 				if val == "-" {
 					signMinus = true
-				} else if val == "+" || val == " " {
-				} else {
+ } else if val == "+" || val == " " {
+ } else {
 					return "", fmt.Errorf("e3: %w",
 						&strconv.NumError{
 							Func: "Atoi",
-							Num:  strconv.Itoa(x) + val,
-							Err:  strconv.ErrSyntax,
+							Num: strconv.Itoa(x) + val,
+							Err: strconv.ErrSyntax,
 						})
 				}
 				if started {
 					definedX = true
 				}
-			} else {
+ } else {
 				x, _ = strconv.Atoi(strconv.Itoa(x) + val)
 				if signMinus {
 					x = -x
